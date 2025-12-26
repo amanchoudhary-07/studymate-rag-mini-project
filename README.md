@@ -1,69 +1,76 @@
-# 📘 StudyMate – Retrieval-Augmented Generation (RAG) Mini Project
+📘 StudyMate – RAG + RLHF Based Intelligent Study Assistant
 
-StudyMate is an end-to-end **Retrieval-Augmented Generation (RAG)** based Question Answering system that allows users to ask questions from their **own study notes (PDF)**.  
-The system retrieves relevant content from the uploaded notes and generates answers **strictly based on that content**, reducing hallucinations and improving reliability.
+StudyMate is an end-to-end Retrieval-Augmented Generation (RAG) based Question Answering system that allows users to ask questions from their own study notes (PDF files).
+The system retrieves relevant content from the uploaded notes and generates answers strictly based on that content, reducing hallucinations and improving reliability.
 
-## 🚀 Project Overview
+The project is further extended with Reinforcement Learning from Human Feedback (RLHF) to continuously improve answer quality, clarity, and alignment with user expectations.
 
-Traditional Large Language Models (LLMs) do not:
-- Understand private documents
-- Stay limited to a specific syllabus
-- Always provide factual answers (hallucination issue)
+🚀 Project Overview
 
-**StudyMate solves this using RAG** by combining:
-- Vector Databases (FAISS)
-- Semantic Embeddings
-- Local Open-Source LLMs (HuggingFace)
+Traditional Large Language Models (LLMs):
 
----
+Do not understand private documents
 
-## 🧠 What is RAG?
+Cannot stay limited to a specific syllabus
 
-**Retrieval-Augmented Generation (RAG)** enhances LLMs by:
-1. Retrieving relevant information from an external knowledge source
-2. Passing that information as context to the language model
-3. Generating grounded and accurate answers
+May generate hallucinated or irrelevant answers
 
-## System Architecture
+StudyMate solves these problems using RAG + RLHF, combining:
+
+Vector Databases (FAISS)
+
+Semantic Embeddings
+
+Local Open-Source LLMs (HuggingFace)
+
+Human feedback–driven optimization
+
+🧠 What is Retrieval-Augmented Generation (RAG)?
+
+RAG improves LLM responses by:
+
+Retrieving relevant information from a knowledge source (PDF notes)
+
+Supplying only that information as context to the model
+
+Generating accurate, grounded answers
+
+📐 System Architecture
 PDF Notes
-↓
+   ↓
 Text Chunking
-↓
+   ↓
 Embedding Generation
-↓
+   ↓
 FAISS Vector Database
-↓
+   ↓
 Semantic Retrieval
-↓
+   ↓
 Local LLM (HuggingFace)
-↓
-final Answer
+   ↓
+Answer
 
-## Project Structure
-
+📂 Project Structure
 studymate-rag-mini-project/
 │
 ├── data/
-│ └── notes.pdf
+│   └── notes.pdf
 │
-├── ingest.py # PDF → chunks → embeddings → FAISS DB
-├── qa.py # Question answering using RAG
+├── ingest.py               # PDF → chunks → embeddings → FAISS DB
+├── qa.py                   # RAG-based Q&A + RLHF loop
+├── feedback.py             # Human feedback collection
+├── reward_model.py         # Reward computation logic
+├── rlhf_loop.py            # Prompt optimization logic
+├── feedback_store.json     # Stored human feedback
+│
 ├── requirements.txt
 ├── README.md
 └── venv/
 
-## Installation & seatup 
-
-
----
-
-## ⚙️ Installation & Setup
-
-## 1️⃣ Clone the Repository
-```bash
+⚙️ Installation & Setup
+1️⃣ Clone the Repository
 git clone <your-repo-url>
 cd studymate-rag-mini-project
-
 
 2️⃣ Create Virtual Environment
 python3 -m venv venv
@@ -73,19 +80,123 @@ source venv/bin/activate
 pip install -r requirements.txt
 pip install sentence-transformers transformers torch
 
-📥 Ingest the PDF (Vector DB Creation)
+📥 PDF Ingestion (Vector Database Creation)
 
-Place your PDF inside the data/ folder as notes.pdf.
+Place your study PDF inside the data/ folder as:
+
+data/notes.pdf
+
+
+Run ingestion:
 
 venv/bin/python ingest.py
+
+
+✔ This step:
+
+Reads the PDF
+
+Splits text into chunks
+
+Generates embeddings
+
+Stores them in FAISS vector database
 
 ❓ Run the Question Answering System
 venv/bin/python qa.py
 
-## Example question 
+
+You can now ask questions related only to your PDF content.
+
+🧪 Example Questions
 
 What is sales forecasting?
+
 Explain types of sales forecasting.
+
 What is demand forecasting?
 
+🧠 RLHF Extension (Human Feedback Learning)
+🔍 Why RLHF?
 
+While RAG ensures correct answers, it does not guarantee:
+
+Clarity
+
+Conciseness
+
+Human satisfaction
+
+RLHF improves response quality using human feedback.
+
+🔁 RLHF Workflow
+1️⃣ Answer Generation (RAG)
+
+The system generates an answer using retrieved PDF context.
+
+2️⃣ Human Feedback Collection
+
+After each answer, the user provides a rating:
+
+Rate the answer (1–5)
+
+
+Feedback is stored in feedback_store.json:
+
+{
+  "question": "...",
+  "answer": "...",
+  "rating": 5
+}
+
+👉 Why feedback_store.json?
+
+Acts as a preference dataset
+
+Stores human judgment
+
+Core input for RLHF optimization
+
+Mimics real-world feedback logs used by companies like OpenAI
+
+3️⃣ Reward Modeling
+
+Human ratings are converted into numerical rewards:
+
+Rating	Reward
+4–5	+1.0
+3	+0.5
+1–2	-1.0
+
+This simulates a reward model used in production RLHF pipelines.
+
+4️⃣ Prompt Optimization
+
+Based on reward:
+
+Low reward → prompt refined for better clarity
+
+High reward → prompt retained
+
+This simulates policy improvement without retraining models.
+
+🏭 Industry Mapping
+Industry RLHF	This Project
+Human labelers	Students / users
+Reward model (NN)	Rule-based logic
+PPO fine-tuning	Prompt optimization
+Preference datasets	feedback_store.json
+
+🎓 Learning Outcomes
+
+By completing this project, you understand:
+
+Why RAG is required
+
+How vector databases work
+
+How embeddings capture semantic meaning
+
+How RLHF improves alignment
+
+How real-world GenAI systems are built

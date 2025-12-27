@@ -32,6 +32,7 @@ RAG improves LLM responses by:
 ---
 
 ## 📂 Project Structure
+
 ```text
 studymate-rag-mini-project/
 │
@@ -46,9 +47,12 @@ studymate-rag-mini-project/
 ├── requirements.txt
 ├── README.md
 └── venv/
+```
+---
 
-⚙️ Installation & Setup
+## ⚙️ Installation & Setup
 
+```text
 1️⃣ Clone the Repository
 git clone <your-repo-link>
 cd studymate-rag-mini-project
@@ -61,10 +65,20 @@ source venv/bin/activate  # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
 pip install sentence-transformers transformers torch
 
-📥 PDF Ingestion (Vector Database Creation)
+```
+---
+
+## 📥 PDF Ingestion (Vector Database Creation)
+
 Place your study PDF inside the data/ folder as: data/notes.pdf
 
 python ingest.py
+
+```text
+
+venv/bin/python ingest.py
+
+```
 
 ✔ This step:
 
@@ -76,18 +90,38 @@ Generates embeddings
 
 Stores them in FAISS vector database
 
-❓ Run the Question Answering System
+---
+
+ ## ❓ Run the Question Answering System
+ 
 python qa.py
+
+```text
+
+venv/bin/python qa.py
+
+```
 
 You can now ask questions related only to your PDF content.
 
-🧪 Example Questions
+---
+
+## 🧪 Example Questions
+
+
 What is sales forecasting?
+
 Explain types of sales forecasting.
+
 What is demand forecasting?
 
-🧠 RLHF Extension (Human Feedback Learning)
+---
+
+## 🧠 RLHF Extension (Human Feedback Learning)
+
+
 🔍 Why RLHF?
+
 While RAG ensures correct answers, it does not guarantee:
 
 Clarity
@@ -96,7 +130,11 @@ Conciseness
 
 Human satisfaction
 
-🔁 RLHF Workflow
+---
+
+## 🔁 RLHF Workflow
+
+
 Answer Generation (RAG): The system generates an answer using retrieved PDF context.
 
 Human Feedback Collection: The user provides a rating (1–5). Feedback is stored in feedback_store.json.
@@ -105,15 +143,28 @@ Reward Modeling: Ratings are converted into numerical rewards.
 
 Prompt Optimization: Low reward triggers prompt refinement; high reward retains the current strategy.
 
-📊 Industry Mapping
+
+---
+
+## 📊 Industry Mapping
+
 
 Industry Concept, This Project Implementation
+
 Human Labelers, Students / Users
+
 Reward Model, Rule-based logic
+
 PPO Fine-tuning, Prompt optimization logic
+
 Preference Dataset, feedback_store.json
 
-🎓 Learning Outcomes
+
+---
+
+## 🎓 Learning Outcomes
+
+
 Why RAG is required for private data.
 
 How Vector Databases (FAISS) manage semantic search.
@@ -121,6 +172,7 @@ How Vector Databases (FAISS) manage semantic search.
 How Embeddings capture meaning.
 
 How RLHF aligns AI behavior with human intent.
+
 
 
 

@@ -104,7 +104,6 @@ venv/bin/python qa.py
 
 You can now ask questions related only to your PDF content.
 
----
 
 ## 🧪 Example Questions
 
@@ -130,7 +129,7 @@ Conciseness
 
 Human satisfaction
 
----
+
 
 ## 🔁 RLHF Workflow
 
@@ -162,6 +161,7 @@ Preference Dataset, feedback_store.json
 
 ---
 
+
 ## 🎓 Learning Outcomes
 
 
@@ -172,6 +172,8 @@ How Vector Databases (FAISS) manage semantic search.
 How Embeddings capture meaning.
 
 How RLHF aligns AI behavior with human intent.
+
+---
 
 
 

@@ -6,6 +6,9 @@ async function askQuestion() {
   const q = document.getElementById("question").value.trim();
   if (!q) return;
 
+resetFeedbackUI();
+
+
   document.getElementById("loader").classList.remove("hidden");
   document.getElementById("answer-card").classList.add("hidden");
   document.getElementById("feedback-box").classList.add("hidden");
@@ -30,6 +33,27 @@ function showAnswer(answer, question) {
   lastQuestion = question;
   lastAnswer = answer;
 }
+
+
+function resetFeedbackUI() {
+  helpful = null;
+
+  // 👍 👎 button reset
+  document.getElementById("yesBtn")?.classList.remove("active");
+  document.getElementById("noBtn")?.classList.remove("active");
+
+  // ⭐ rating reset
+  const rating = document.getElementById("rating");
+  if (rating) rating.value = "5";
+
+  // feedback message clear
+  const msg = document.getElementById("feedback-msg");
+  if (msg) msg.innerText = "";
+}
+
+
+
+
 
 function setHelpful(val) {
   helpful = val;

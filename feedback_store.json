@@ -1,3 +1,19 @@
 {"timestamp": "2025-12-26 06:40:22.806601", "question": "intintroduction", "answer": "a Python-based sales forecasting system using machine learning algorithms", "rating": 2}
 {"timestamp": "2025-12-26 06:40:46.849473", "question": "my name ", "answer": "Riya Verma.", "rating": 1}
 {"timestamp": "2025-12-26 06:43:44.151307", "question": "tools use in this project ", "answer": "data analysis and machine learning. Libraries such as Pandas, NumPy, Matplotlib, and Scikit-learn are used. Development is carried out using Jupyter Notebook or VS Code. Git is used for source code management, and historical sales data to predict future sales. Model performance is evaluated using standard error metrics to ensure accuracy and reliability. To enhance the project, basic DevOps tools are integrated. Git is used for version control, Docker for containerization, and simple CI automation concepts are applied to ensure consistency and ease of deployment. This modular and scalable approach makes the system suitable for future enhancements.", "rating": 5}
+{"question": "introuction", "answer": "unanswerable", "helpful": false, "rating": 3}
+{"question": "introuction", "answer": "unanswerable", "helpful": false, "rating": 3}
+{"question": "introuction", "answer": "unanswerable", "helpful": false, "rating": 2}
+{"question": "introuction", "answer": "unanswerable", "helpful": false, "rating": 2}
+{"question": "introduction", "answer": "Aman Choudhary \u2013 mr.amanjichoudhary Jay Singh Solanki \u2013 jaysinghsolanki94@gmail.com", "helpful": false, "rating": 1}
+{"question": "guide name ", "answer": "Prof. Riya Verma", "helpful": false, "rating": 5}
+{"question": "what is sales forecasting", "answer": "a vital process for businesses to predict future sales using historical data and analytical techniques", "helpful": true, "rating": 3}
+{"question": "how to use this app", "answer": "ease of use", "helpful": false, "rating": 3}
+{"question": "how to use this app", "answer": "ease of use", "helpful": false, "rating": 3}
+{"question": "how to use this app", "answer": "ease of use", "helpful": false, "rating": 3}
+{"question": "how to use this app", "answer": "ease of use", "helpful": false, "rating": 3}
+{"question": "how to use this app", "answer": "ease of use", "helpful": false, "rating": 5}
+{"question": "how to use this app", "answer": "ease of use", "helpful": false, "rating": 5}
+{"question": "how to use this app", "answer": "ease of use", "helpful": false, "rating": 5}
+{"question": "system domain", "answer": "The system is implemented using Python as the primary programming language due to its extensive libraries for build an accurate forecasting model, and support better business decision-making.", "helpful": true, "rating": 5}
+{"question": "what is the aim of this project", "answer": "to help business owners and managers forecast demand, plan inventory, and optimize resources", "helpful": true, "rating": 5}

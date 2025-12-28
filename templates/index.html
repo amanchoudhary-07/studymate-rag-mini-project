@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>StudyMate – AI Study Assistant</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta charset="UTF-8">
+  <title>StudyMate – AI Study Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
-    <div class="container">
-        <h1>📘 StudyMate</h1>
-        <p>Ask questions from your study notes</p>
+<div class="container">
+  <h1>📘 StudyMate</h1>
+  <p class="subtitle">AI-powered study assistant</p>
 
-        <input type="text" id="question" placeholder="Ask your question...">
-        <button onclick="askQuestion()">Ask</button>
+  <div class="input-box">
+    <input type="text" id="question" placeholder="Ask from your notes...">
+    <button onclick="askQuestion()">Ask</button>
+  </div>
 
-        <div id="answer"></div>
+  <div id="loader" class="loader hidden"></div>
+
+  <div id="answer-card" class="answer-card hidden">
+    <div id="answer"></div>
+  </div>
+
+  <!-- RLHF Feedback -->
+  <div id="feedback-box" class="feedback hidden">
+    <p>Was this answer helpful?</p>
+
+    <div class="feedback-buttons">
+      <button id="yesBtn" onclick="setHelpful(true)">👍</button>
+      <button id="noBtn" onclick="setHelpful(false)">👎</button>
     </div>
+
+    <select id="rating">
+      <option value="5">⭐⭐⭐⭐⭐</option>
+      <option value="4">⭐⭐⭐⭐</option>
+      <option value="3">⭐⭐⭐</option>
+      <option value="2">⭐⭐</option>
+      <option value="1">⭐</option>
+    </select>
+
+    <button class="submit-btn" onclick="submitFeedback()">Submit Feedback</button>
+    <p id="feedback-msg"></p>
+
+  <div class="app">
+</div>
 
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
+
+

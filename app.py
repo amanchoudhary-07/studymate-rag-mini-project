@@ -2,15 +2,16 @@ from flask import Flask, render_template, request, jsonify
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from transformers import pipeline
+import json
 
 app = Flask(__name__)
 
-# Load embeddings
+# Embeddings
 embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
 
-# Load vector DB
+# Vector DB
 vector_db = FAISS.load_local(
     "vector_db",
     embeddings,
@@ -32,18 +33,16 @@ def home():
 
 @app.route("/ask", methods=["POST"])
 def ask():
-    data = request.get_json()
-    question = data.get("question")
+    question = request.json.get("question")
 
     docs = retriever.invoke(question)
-
     if not docs:
         return jsonify({"answer": "Answer not found in the provided notes."})
 
     context = "\n\n".join(doc.page_content for doc in docs)
 
     prompt = f"""
-Answer the question ONLY using the context below.
+Answer ONLY from the context below.
 If not found, say: Answer not found in the provided notes.
 
 Context:
@@ -54,8 +53,23 @@ Question:
 """
 
     result = qa_model(prompt)[0]["generated_text"]
-
     return jsonify({"answer": result})
+
+@app.route("/feedback", methods=["POST"])
+def feedback():
+    data = request.json
+
+    record = {
+        "question": data["question"],
+        "answer": data["answer"],
+        "helpful": data["helpful"],
+        "rating": int(data["rating"])
+    }
+
+    with open("feedback_store.json", "a") as f:
+        f.write(json.dumps(record) + "\n")
+
+    return jsonify({"status": "saved"})
 
 if __name__ == "__main__":
     app.run(debug=True)
